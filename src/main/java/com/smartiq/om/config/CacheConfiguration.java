@@ -51,6 +51,9 @@ public class CacheConfiguration {
             createCache(cm, com.smartiq.om.domain.User.class.getName());
             createCache(cm, com.smartiq.om.domain.Authority.class.getName());
             createCache(cm, com.smartiq.om.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.smartiq.om.domain.Order.class.getName());
+            createCache(cm, com.smartiq.om.domain.Address.class.getName());
+            createCache(cm, com.smartiq.om.domain.Address.class.getName() + ".orders");
             // jhipster-needle-ehcache-add-entry
         };
     }

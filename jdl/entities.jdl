@@ -1,0 +1,23 @@
+entity Order{
+   orderId Long required 
+   status OrderStatus required    
+}
+
+enum OrderStatus {
+  NEW,
+  COMPLETED,
+  CANCELLED
+}
+
+entity Address{
+  name String required
+  city String required
+  district String required
+  details String required
+}
+
+relationship ManyToOne {
+  Order to Address
+}
+
+paginate Order with pagination
