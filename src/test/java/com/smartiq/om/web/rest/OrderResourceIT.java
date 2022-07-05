@@ -441,13 +441,14 @@ class OrderResourceIT {
     void cancelOrder() throws Exception {
         // Initialize the database
         order.setStatus(OrderStatus.NEW);
+        order.setOrderId(1000l);
         orderRepository.saveAndFlush(order);
 
         int databaseSizeBeforeDelete = orderRepository.findAll().size();
 
         // Delete the order
         restOrderMockMvc
-            .perform(get(ENTITY_API_URL + "/cancel/" + order.getId()).accept(MediaType.APPLICATION_JSON))
+            .perform(get(ENTITY_API_URL + "/cancel/" + "1000").accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
         // Validate the database contains one less item

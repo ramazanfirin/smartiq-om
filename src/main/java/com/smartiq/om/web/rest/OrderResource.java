@@ -219,7 +219,11 @@ public class OrderResource {
     
     @GetMapping("/orders/cancel/{orderId}")
     public Order cancel(@PathVariable Long orderId) {
-        Order order = orderRepository.getById(orderId);
+        List<Order> orders =orderRepository.getOrderByOrderId(orderId);
+        if(orders.size()==0)
+        	throw new RuntimeException("order nor found");
+        
+        Order order = orders.get(0);
         order.setStatus(com.smartiq.om.domain.enumeration.OrderStatus.CANCELLED);
         orderRepository.save(order);
         return order;
